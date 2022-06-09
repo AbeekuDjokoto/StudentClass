@@ -1,0 +1,24 @@
+1 Create a Student class
+Properties
+All properties must be protected/private
+
+name
+grade
+gpa
+courses
+age
+Methods
+calculateGpa(newGpa)
+sayHello()
+printCourses()
+Setters & Getters
+For all properties
+
+Setters should have some validations
+
+2 Student Management
+createStudent(...args)
+addStudent(student) - appends student object to students array
+searchStudent(name) - searches students by name
+filterStudentsByGrade(grade) - filters students array by given grade
+filterStudentsByAge(minAge,maxAge) - filters students array by given age range(inclusive)

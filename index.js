@@ -1,23 +1,23 @@
 
 class Student{
-#name
-#grade
-#gpa
-#courses
-#age
+_name
+_grade
+_gpa
+_courses
+_age
 
     constructor(name, grade, gpa, courses = [], age){
-        this.#name = name,
-        this.#grade = grade,
-        this.#gpa = gpa,
-        this.#courses = courses,
-        this.#age = age
+        this._name = name,
+        this._grade = grade,
+        this._gpa = gpa,
+        this._courses = courses,
+        this._age = age
     }
 
     
     setName(identityName){
         if(identityName.length > 1 && identityName.length === ""){
-            this.name = identityName;
+            this._name = identityName;
             console.log('Success');
         }else{
             console.log('Your name input should not be empty or less than one character')
@@ -25,12 +25,12 @@ class Student{
     }
 
     getName(){
-        return this.name;
+        return this._name;
     }
 
     setCourses(pluralCourses){
         if(pluralCourses > 0 && pluralCourses === isNaN){
-            this.courses = pluralCourses
+            this._courses = pluralCourses
             console.log('Success')
         }else{
             console.log('The input chosen is invalid, try again.')
@@ -38,20 +38,20 @@ class Student{
     }
 
     getCourses(){
-        return this.courses
+        return this._courses
     }
 
     setGrade(newGrade){
-       this.grade = newGrade
+       this._grade = newGrade
     }
 
     getGrade(){
-        return this.grade;
+        return this._grade;
     }
 
     setGpa(score){
         if(score > 1.5){
-          this.gpa = parseFloat(score.toFixed(1));
+          this._gpa = parseFloat(score.toFixed(1));
             console.log('Success');
         }else{
             console.log('You failed, try again next year')
@@ -59,12 +59,12 @@ class Student{
     }
 
     getGpa(){
-        return this.gpa
+        return this._gpa
     }
 
     setAge(aged){
         if(aged >= 18){
-            this.age = aged;
+            this._age = aged;
             console.log('You are 18 or above');
         }else{
             console.log('Sorry, you are below 18')
@@ -72,24 +72,60 @@ class Student{
     }
 
     getAge(){
-        return this.age
+        return this._age
     }
 
     sayHello(){
-        console.log(`Hello ${this.#name}, you are ${this.#age}`)
+        console.log(`Hello ${this._name}, you are ${this._age}`)
     }
 
     printCourses(){
-        console.log(`These are the number of courses ${this.#courses}`)
+        console.log(`These are the number of courses ${this._courses}`)
     }
 
     calculateGpa(){
-        console.log(`Your gpa is ${this.#gpa}`)
+        console.log(`Your gpa is ${this._gpa}`)
     }
 }
 
-// let studentA = new Student("Mark", 80, 3.2, "Maths", 20);
+class MiddleSchooler extends Student{
+    constructor(name, grade, gpa, courses = [], age){
+        super(name, grade, gpa, courses = [], age)
+    }
+}
 
-// studentA.calculateGpa();
-// studentA.sayHello();
-// studentA.calculateGpa();
+let studentRoll = [];
+
+function createStudent(name, grade, gpa, courses, age){
+    let newStudent = new Student(name, grade, age, courses, gpa)
+    console.log(newStudent)
+    return newStudent
+}
+
+function enrollStudent(student){
+    studentRoll.push(student)
+}
+
+function searchStudent(name){
+        return name === "michael"
+}
+
+function myFindMethod(query){
+
+    function searchStudent(name){
+        return name === query;
+}
+return searchStudent;
+}
+
+function filterStudentsByGrade(grade){
+        return grade === "A"
+}
+
+function filterStudentsByMinAge(minAge){
+    return Math.min(...minAge)
+}
+
+function filterStudentsByMaxAge(maxAge){
+    return Math.max(...maxAge)
+}
