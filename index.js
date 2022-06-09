@@ -107,25 +107,20 @@ function enrollStudent(student){
 }
 
 function searchStudent(name){
-        return name === "michael"
-}
-
-function myFindMethod(query){
-
-    function searchStudent(name){
-        return name === query;
-}
-return searchStudent;
+        return studentRoll.filter((s) => s.getName().includes(name));
 }
 
 function filterStudentsByGrade(grade){
-        return grade === "A"
+    return studentRoll.filter((s) => s.getGrade() == grade);
 }
 
 function filterStudentsByMinAge(minAge){
-    return Math.min(...minAge)
+    return studentRoll.filter((s) => s.getAge() > minAge)
 }
 
-function filterStudentsByMaxAge(maxAge){
-    return Math.max(...maxAge)
+function filterStudentsByMaxAge(maxAge){    
+    return studentRoll.filter((s) => s.getAge() < maxAge)
 }
+
+
+
