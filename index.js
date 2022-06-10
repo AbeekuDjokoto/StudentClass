@@ -29,7 +29,7 @@ _age
     }
 
     setCourses(pluralCourses){
-        if(pluralCourses > 0 && pluralCourses === isNaN){
+        if(pluralCourses > 0){
             this._courses = pluralCourses
             console.log('Success')
         }else{
@@ -96,6 +96,69 @@ class MiddleSchooler extends Student{
 
 let studentRoll = [];
 
+class Person {
+    constructor(name, age, grade){
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+    }
+}
+
+
+    let button = document.getElementById('btn')
+    let fname = document.getElementById('fname')
+    let grade = document.getElementById('grade') 
+    let gpa = document.getElementById('gpa')
+    let courses = document.getElementById('courses')
+    let age = document.getElementById("age") 
+    let row = 1; 
+
+button.addEventListener('click', (event) =>{
+    event.preventDefault()
+    if(fname.value === "" || fname.value.length > 12){
+        fname.nextElementSibling.style.color = "red"
+        fname.nextElementSibling.style.fontSize = "12px"
+        fname.nextElementSibling.innerHTML ="This field should not be empty and must not exceed 12 characters"
+        return
+    }else if(age.value < 18){
+            age.nextElementSibling.style.color = "red"
+            age.nextElementSibling.style.fontSize = "12px"
+            age.nextElementSibling.innerHTML ="You are too young"
+        return
+    }else if(gpa.value < 1.5){
+        gpa.nextElementSibling.style.color = "red"
+        gpa.nextElementSibling.style.fontSize = "12px"
+        gpa.nextElementSibling.innerHTML ="Requirement is 2.0 and above"
+        return
+    }else if(grade.value < 70){
+        grade.nextElementSibling.style.color = "red"
+        grade.nextElementSibling.style.fontSize = "12px"
+        grade.nextElementSibling.innerHTML ="Sorry the pass mark is 70 and above"
+        return
+    }else if(courses.value === "" || courses.value >= 18){
+         courses.nextElementSibling.style.fontSize = "12px"
+         courses.nextElementSibling.style.color = "red"
+         courses.nextElementSibling.innerHTML ="This field cannot be left empty"
+    }
+    
+    let display = document.getElementById('display')
+    let newRow = display.insertRow(row);
+
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+    let cell3 = newRow.insertCell(2);
+    let cell4 = newRow.insertCell(3);
+    let cell5 = newRow.insertCell(4);
+
+    cell1.innerHTML = fname.value;
+    cell2.innerHTML = age.value;
+    cell3.innerHTML = gpa.value;
+    cell4.innerHTML = grade.value;
+    cell5.innerHTML = courses.value;
+
+    row++;
+})
+
 function createStudent(name, grade, gpa, courses, age){
     let newStudent = new Student(name, grade, age, courses, gpa)
     console.log(newStudent)
@@ -107,11 +170,11 @@ function enrollStudent(student){
 }
 
 function searchStudent(name){
-        return studentRoll.filter((s) => s.getName().includes(name));
+        return studentRoll.filter((s) => s.getName().includes(name).toUpppercase());
 }
 
 function filterStudentsByGrade(grade){
-    return studentRoll.filter((s) => s.getGrade() == grade);
+    return studentRoll.filter((s) => s.getGrade() === grade);
 }
 
 function filterStudentsByMinAge(minAge){
