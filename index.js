@@ -115,7 +115,7 @@ class Person {
 
 button.addEventListener('click', (event) =>{
     event.preventDefault()
-    if(fname.value === "" || fname.value.length > 12){
+    if(fname.value === "" || fname.value.length > 12 ){
         fname.nextElementSibling.style.color = "red"
         fname.nextElementSibling.style.fontSize = "12px"
         fname.nextElementSibling.innerHTML ="This field should not be empty and must not exceed 12 characters"
@@ -139,6 +139,7 @@ button.addEventListener('click', (event) =>{
          courses.nextElementSibling.style.fontSize = "12px"
          courses.nextElementSibling.style.color = "red"
          courses.nextElementSibling.innerHTML ="This field cannot be left empty"
+        return
     }
     
     let display = document.getElementById('display')
@@ -157,7 +158,24 @@ button.addEventListener('click', (event) =>{
     cell5.innerHTML = courses.value;
 
     row++;
+
+    listboxresults()
 })
+
+function listboxresults(){
+    let spanresult = document.getElementById("result")
+    spanresult.value = "";
+    let x = document.getElementById('asl')
+    for(let i=0; i<x.options.length; i++){
+       if(x.options[i].selected === true){
+           spanresult.value += x.options[i].value + " ";
+           document.getElementById("result").innerHTML = spanresult;
+       }
+       if(document.getElementById("result").value === ""){
+           spanresult.innerHTML = "Please select at least on list item"
+       } 
+    }
+}
 
 function createStudent(name, grade, gpa, courses, age){
     let newStudent = new Student(name, grade, age, courses, gpa)
